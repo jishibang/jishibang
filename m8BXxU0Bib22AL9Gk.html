@@ -1,0 +1,1706 @@
+<html><head><base href="jishibang.net"><meta charset="UTF-8">
+<meta name="description" content="急事帮维修服务平台 - 您身边的维修专家，提供水电维修、家具维修、家电维修、保洁等服务">
+<meta name="keywords" content="急事帮,家庭维修,维修服务,水电维修,家具维修,家电维修,保洁服务">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://jishibang.net">
+<title>急事帮维修服务平台 | jishibang.net</title>
+
+<style>
+  /* 网站主题配色方案 */
+  :root {
+    --primary: #1E88E5;  /* 主题蓝 */
+    --secondary: #FFA726; /* 温暖橙 */
+    --success: #4CAF50;
+    --danger: #f44336;
+    --dark: #424242;
+    --light: #f5f5f5;
+    --white: #ffffff;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    background: var(--light);
+    color: var(--dark);
+  }
+
+  .header {
+    background: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+  }
+
+  .logo svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+
+  .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .domain {
+    color: var(--secondary);
+    font-size: 14px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  #languageSelect {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    background: white;
+    color: var(--dark);
+    cursor: pointer;
+  }
+
+  #languageSelect:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30,136,229,0.1);
+  }
+
+  @media (max-width: 768px) {
+    #languageSelect {
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+
+  .admin-btn {
+    background: var(--dark);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .admin-btn:hover {
+    background: #2c2c2c;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .brand {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+  }
+
+  .statistics {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    color: var(--dark);
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .statistics {
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 15px;
+    }
+    
+    .stat-box {
+      width: 100%;
+    }
+  }
+
+  .search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  input, select, button {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30,136,229,0.1);
+  }
+
+  button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+
+  button:hover {
+    background: #1976D2;
+    transform: translateY(-1px);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  tr:hover {
+    background: #f8f9fa;
+  }
+
+  .action-btn {
+    padding: 6px 12px;
+    margin: 0 4px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .edit-btn {
+    background: var(--primary);
+  }
+
+  .delete-btn {
+    background: var(--danger);
+  }
+
+  .hide-btn {
+    background: var(--dark);
+    margin-top: 5px;
+  }
+
+  .hide-btn:hover {
+    background: #2c2c2c;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .pagination button {
+    min-width: 80px;
+    padding: 8px 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .pagination span {
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .rating {
+    color: var(--secondary);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow-y: auto; /* Enable scrolling */
+  }
+
+  .modal-content {
+    position: relative;
+    background: white;
+    margin: 20px auto; /* Changed from percentage to fixed margin */
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  /* Add styles to prevent body scrolling when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .register-btn {
+    background: var(--secondary);
+    margin-left: 10px;
+  }
+
+  .admin-header {
+    background: var(--dark);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .admin-logout {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+  }
+
+  .admin-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .edit-modal .form-group {
+    margin-bottom: 15px;
+  }
+
+  .avatar-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-upload {
+    display: none;
+  }
+
+  .avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px 0;
+    border: 2px dashed #ddd;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    color: var(--primary);
+    margin-top: 5px;
+  }
+
+  .certified-badge {
+    background: var(--success);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-block;
+  }
+
+  .uncertified {
+    background: #999;
+  }
+
+  #keywordSearch {
+    margin-right: 10px;
+    min-width: 200px;
+  }
+
+  @media (max-width: 768px) {
+    /* Container adjustments */
+    .container {
+      margin: 10px;
+      padding: 15px;
+    }
+
+    /* Search section adjustments */
+    .search-section {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search-section > * {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    /* Brand section adjustments */
+    .brand {
+      font-size: 1.8em;
+      padding: 0 10px;
+      word-break: break-word;
+    }
+
+    .subtitle {
+      font-size: 1em;
+      padding: 0 10px;
+    }
+
+    /* Table adjustments */
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 1px solid #eee;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    td {
+      position: relative;
+      padding: 12px 8px 12px 50%;
+      min-height: 40px;
+      border: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    td:last-child {
+      border-bottom: none;
+    }
+
+    td:before {
+      position: absolute;
+      left: 8px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      content: attr(data-label);
+      font-weight: bold;
+      color: var(--dark);
+    }
+
+    /* Button adjustments */
+    .action-btn {
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+      width: 95%;
+      margin: 10px auto;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    /* Navigation adjustments */
+    .nav-container {
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Avatar adjustments */
+    .avatar-container {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+    }
+
+    /* Rating stars display */
+    .rating {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    /* Pagination adjustments */
+    .pagination {
+      gap: 5px;
+    }
+
+    .pagination button {
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+
+    /* Footer adjustments */
+    .footer {
+      padding: 15px 10px;
+      font-size: 0.9em;
+    }
+
+    .footer p {
+      line-height: 1.4;
+      margin: 5px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand {
+      font-size: 1.5em;
+    }
+
+    .subtitle {
+      font-size: 0.9em;
+    }
+
+    td:before {
+      font-size: 13px;
+    }
+
+    td {
+      font-size: 13px;
+      padding: 10px 8px 10px 45%;
+    }
+  }
+
+  /* Add smooth scrolling for iOS devices */
+  @supports (-webkit-overflow-scrolling: touch) {
+    .modal-content {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Worker modal styles */
+  .worker-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1100;
+  }
+
+  .worker-content {
+    position: relative;
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .worker-photo {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  .worker-info {
+    margin-top: 20px;
+  }
+
+  .worker-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+
+  .worker-intro {
+    line-height: 1.6;
+    color: var(--dark);
+  }
+
+  .worker-details-form {
+    margin-top: 20px;
+  }
+
+  .worker-details-form .form-group {
+    margin-bottom: 15px;
+  }
+
+  .worker-details-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .worker-details-form input,
+  .worker-details-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .worker-details-form input:focus,
+  .worker-details-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30,136,229,0.1);
+  }
+
+  .worker-details-form .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .worker-details-form .submit-btn:hover {
+    background: #1976D2;
+  }
+
+  /* Add hover effect for photo upload */
+  #workerPhoto {
+    transition: opacity 0.3s;
+  }
+
+  #workerPhoto:hover {
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav-container">
+      <a href="https://jishibang.net" class="logo">
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="#1E88E5"/>
+          <text x="20" y="25" fill="white" font-size="16" text-anchor="middle" font-weight="bold">急</text>
+        </svg>
+        <span class="logo-text">急事帮</span>
+        <span class="domain">jishibang.net</span>
+      </a>
+      <div class="nav-links">
+        <select id="languageSelect" onchange="switchLanguage(this.value)" style="margin-right: 20px;">
+          <option value="zh">简体中文</option>
+          <option value="zh-tw">繁體中文</option>
+          <option value="en">English</option>
+        </select>
+        <a href="https://jishibang.net">首页</a>
+        <a href="https://jishibang.net/services">服务项目</a>
+        <a href="https://jishibang.net/about">关于我们</a>
+        <a href="https://jishibang.net/contact">联系我们</a>
+        <button onclick="showUserLogin()" class="login-btn">用户登录</button>
+        <button onclick="showUserRegister()" class="register-btn">用户注册</button>
+        <button onclick="showRegisterModal()" class="register-btn">维修工注册</button>
+        <button onclick="showAdminLogin()" class="admin-btn">管理入口</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="brand">急事帮维修服务平台</div>
+    <div class="subtitle">专业维修师傅上门服务 - 快速响应 品质保证</div>
+    
+    <div class="statistics">
+      <div class="stat-box">
+        <div class="stat-number" id="workerCount">0</div>
+        <div class="stat-label">注册维修工数量</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number" id="userCount">0</div>
+        <div class="stat-label">注册用户数量</div>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <input 
+        type="text" 
+        id="keywordSearch" 
+        placeholder="输入关键字搜索(姓名/服务/区域/电话)" 
+        style="flex: 1.5;">
+      <div id="areaFilter" style="display: flex; gap: 10px; flex: 2;">
+        <!-- Will be populated by updateAreaFilter() -->
+      </div>
+      <input type="text" id="addressSearch" placeholder="输入详细地址搜索" style="flex: 1;">
+      <select id="serviceType">
+        <option value="">所有服务类型</option>
+        <option value="水电维修">水电维修</option>
+        <option value="家具维修">家具维修</option>
+        <option value="家电维修">家电维修</option>
+        <option value="保洁服务">保洁服务</option>
+      </select>
+      <button onclick="searchData()">搜索</button>
+      <button onclick="showAddModal()" style="background: var(--success);">添加人员</button>
+    </div>
+
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>头像</th>
+          <th>ID</th>
+          <th>姓名</th>
+          <th>服务类型</th>
+          <th>服务区域</th>
+          <th>评分</th>
+          <th>联系电话</th>
+          <th>工作时间</th>
+          <th>急事帮认证</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <div class="pagination">
+      <button onclick="previousPage()" id="prevBtn">上一页</button>
+      <span id="pageDisplay" style="margin: 0 10px;">1 / 1</span>
+      <button onclick="nextPage()" id="nextBtn">下一页</button>
+    </div>
+  </div>
+
+  <!-- 用户登录模态框 -->
+  <div id="userLoginModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeUserLoginModal()">&times;</span>
+      <h2>用户登录</h2>
+      <form id="userLoginForm" onsubmit="handleUserLogin(event)">
+        <div class="form-group">
+          <label>手机号：</label>
+          <input type="tel" id="userPhone" required>
+        </div>
+        <div class="form-group">
+          <label>密码：</label>
+          <input type="password" id="userPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">登录</button>
+        <p class="form-footer">还没有账号？<a href="#" onclick="switchToRegister()">立即注册</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 用户注册模态框 -->
+  <div id="userRegisterModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeUserRegisterModal()">&times;</span>
+      <h2>用户注册</h2>
+      <form id="userRegisterForm" onsubmit="handleUserRegister(event)">
+        <div class="form-group">
+          <label>手机号：</label>
+          <input type="tel" id="newUserPhone" required>
+        </div>
+        <div class="form-group">
+          <label>密码：</label>
+          <input type="password" id="newUserPassword" required>
+        </div>
+        <div class="form-group">
+          <label>确认密码：</label>
+          <input type="password" id="confirmPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">注册</button>
+        <p class="form-footer">已有账号？<a href="#" onclick="switchToLogin()">立即登录</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 注册模态框 -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>维修工注册</h2>
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>头像：</label>
+          <div class="avatar-preview" id="regAvatarPreview">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23f0f0f0'/%3E%3Ctext x='25' y='25' font-family='Arial' font-size='20' fill='%23999' text-anchor='middle' dy='.3em'%3E+%3C/text%3E%3C/svg%3E" alt="默认头像">
+          </div>
+          <input type="file" id="regAvatar" class="avatar-upload" accept="image/*">
+          <label for="regAvatar" class="avatar-label">点击上传头像</label>
+        </div>
+        <div class="form-group">
+          <label>姓名：</label>
+          <input type="text" id="regName" required>
+        </div>
+        <div class="form-group">
+          <label>联系电话：</label>
+          <input type="tel" id="regPhone" pattern="[0-9-]{11,13}" required>
+        </div>
+        <div class="form-group">
+          <label>服务类型：</label>
+          <select id="regServiceType" required>
+            <option value="">请选择服务类型</option>
+            <option value="水电维修">水电维修</option>
+            <option value="家具维修">家具维修</option>
+            <option value="家电维修">家电维修</option>
+            <option value="保洁服务">保洁服务</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>服务区域：</label>
+          <select id="regArea" required>
+            <option value="">请选择服务区域</option>
+            <option value="朝阳区">朝阳区</option>
+            <option value="海淀区">海淀区</option>
+            <option value="丰台区">丰台区</option>
+            <option value="西城区">西城区</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>工作时间：</label>
+          <input type="text" id="regWorkTime" placeholder="例如：9:00-18:00" required>
+        </div>
+        <button type="submit" class="submit-btn">提交注册</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 管理员登录模态框 -->
+  <div id="adminLoginModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAdminModal()">&times;</span>
+      <h2>管理员登录</h2>
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label>用户名：</label>
+          <input type="text" id="adminUsername" required>
+        </div>
+        <div class="form-group">
+          <label>密码：</label>
+          <input type="password" id="adminPassword" required>
+        </div>
+        <button type="submit" class="submit-btn">登录</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 后台管理面板 -->
+  <div id="adminPanel" class="admin-panel">
+    <div class="admin-header">
+      <h2>急事帮维修服务平台</h2>
+      <button onclick="logoutAdmin()" class="admin-logout">退出登录</button>
+    </div>
+    <div class="admin-content">
+      <div class="search-section">
+        <input type="text" id="adminSearch" placeholder="搜索维修工..." style="flex: 1;">
+        <button onclick="adminSearchData()">搜索</button>
+      </div>
+      <table id="adminTable">
+        <thead>
+          <tr>
+            <th>头像</th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>服务类型</th>
+            <th>服务区域</th>
+            <th>评分</th>
+            <th>联系电话</th>
+            <th>工作时间</th>
+            <th>急事帮认证</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 编辑模态框 -->
+  <div id="editModal" class="modal">
+    <div class="modal-content edit-modal">
+      <span class="close-btn" onclick="closeEditModal()">&times;</span>
+      <h2>编辑维修工信息</h2>
+      <form id="editForm">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label>头像：</label>
+          <div class="avatar-preview" id="editAvatarPreview">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23f0f0f0'/%3E%3Ctext x='25' y='25' font-family='Arial' font-size='20' fill='%23999' text-anchor='middle' dy='.3em'%3E+%3C/text%3E%3C/svg%3E" alt="默认头像">
+          </div>
+          <input type="file" id="editAvatar" class="avatar-upload" accept="image/*">
+          <label for="editAvatar" class="avatar-label" onclick="handleAvatarUpload(document.getElementById('editId').value)">点击更换头像</label>
+        </div>
+        <div class="form-group">
+          <label>姓名：</label>
+          <input type="text" id="editName" required>
+        </div>
+        <div class="form-group">
+          <label>服务类型：</label>
+          <select id="editServiceType" required>
+            <option value="水电维修">水电维修</option>
+            <option value="家具维修">家具维修</option>
+            <option value="家电维修">家电维修</option>
+            <option value="保洁服务">保洁服务</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>服务区域：</label>
+          <select id="editCity" required>
+            <option value="">选择城市</option>
+          </select>
+          <select id="editDistrict" required>
+            <option value="">选择区域</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>评分：</label>
+          <input type="number" id="editRating" min="1" max="5" step="0.1" required>
+        </div>
+        <div class="form-group">
+          <label>联系电话：</label>
+          <input type="tel" id="editPhone" required>
+        </div>
+        <div class="form-group">
+          <label>工作时间：</label>
+          <input type="text" id="editWorkTime" required>
+        </div>
+        <div class="form-group">
+          <label>急事帮认证：</label>
+          <select id="editCertified" required>
+            <option value="true">已认证</option>
+            <option value="false">未认证</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">保存修改</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Worker Details Modal -->
+  <div id="workerModal" class="worker-modal">
+    <div class="worker-content">
+      <span class="close-btn" onclick="closeWorkerModal()">&times;</span>
+      <img id="workerPhoto" class="worker-photo" src="" alt="Worker Photo">
+      <div class="worker-info">
+        <div id="workerName" class="worker-name"></div>
+        <div class="worker-intro"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2024 急事帮维修服务平台 版权所有</p>
+    <p>网址：<a href="https://jishibang.net">jishibang.net</a> | 24小时服务热线：18607718001 | 客服电话：18607718001</p>
+  </footer>
+
+<script>
+// Language translations
+const translations = {
+  'zh': {
+    table: {
+      avatar: '头像',
+      id: 'ID',
+      name: '姓名',
+      serviceType: '服务类型',
+      area: '服务区域',
+      rating: '评分',
+      phone: '联系电话',
+      workTime: '工作时间',
+      certified: '已认证',
+      uncertified: '未认证',
+      operations: '操作'
+    },
+    buttons: {
+      edit: '编辑',
+      delete: '删除',
+      hide: '隐藏',
+      show: '显示'
+    },
+    messages: {
+      confirmDelete: '确定要删除这条记录吗？'
+    }
+  },
+  'zh-tw': {
+    table: {
+      avatar: '頭像',
+      id: 'ID',
+      name: '姓名',
+      serviceType: '服務類型',
+      area: '服務區域',
+      rating: '評分',
+      phone: '聯繫電話',
+      workTime: '工作時間',
+      certified: '已認證',
+      uncertified: '未認證',
+      operations: '操作'
+    },
+    buttons: {
+      edit: '編輯',
+      delete: '刪除',
+      hide: '隱藏',
+      show: '顯示'
+    },
+    messages: {
+      confirmDelete: '確定要刪除這條記錄嗎？'
+    }
+  },
+  'en': {
+    table: {
+      avatar: 'Avatar',
+      id: 'ID',
+      name: 'Name',
+      serviceType: 'Service Type',
+      area: 'Service Area',
+      rating: 'Rating',
+      phone: 'Phone',
+      workTime: 'Working Hours',
+      certified: 'Certified',
+      uncertified: 'Uncertified',
+      operations: 'Operations'
+    },
+    buttons: {
+      edit: 'Edit',
+      delete: 'Delete',
+      hide: 'Hide',
+      show: 'Show'
+    },
+    messages: {
+      confirmDelete: 'Are you sure you want to delete this item?'
+    }
+  }
+};
+
+// Add constants for random name generation
+const CHINESE_SURNAMES = ['张', '王', '李', '赵', '刘', '陈', '杨', '黄', '周', '吴', '徐', '孙', '胡', '朱', '高', '林', '何', '郭', '马', '罗'];
+const CHINESE_NAMES = ['伟', '强', '军', '平', '杰', '明', '建', '华', '勇', '永', '志', '国', '英', '德', '文', '辉', '宇', '飞', '忠', '良'];
+const CHINESE_CITIES = [
+  { city: '北京市', areas: ['朝阳区', '海淀区', '丰台区', '西城区', '东城区', '昌平区'] },
+  { city: '上海市', areas: ['浦东新区', '静安区', '黄浦区', '徐汇区', '长宁区'] },
+  { city: '广州市', areas: ['天河区', '越秀区', '海珠区', '荔湾区', '白云区'] },
+  { city: '深圳市', areas: ['福田区', '南山区', '罗湖区', '宝安区', '龙岗区'] },
+  { city: '成都市', areas: ['武侯区', '锦江区', '青羊区', '金牛区', '成华区'] },
+  { city: '杭州市', areas: ['西湖区', '上城区', '下城区', '江干区', '拱墅区'] },
+  { city: '南京市', areas: ['玄武区', '秦淮区', '建邺区', '鼓楼区', '栖霞区'] },
+  { city: '武汉市', areas: ['江汉区', '武昌区', '洪山区', '汉阳区', '江岸区'] }
+];
+
+// Initialize table data
+let currentPage = 1;
+const itemsPerPage = 5; // Changed from 10 to 5
+let tableData = [];
+let registeredWorkers = 0;
+let registeredUsers = 0;
+
+function renderTable() {
+  const currentLang = document.getElementById('languageSelect').value || 'zh';
+  const translation = translations[currentLang];
+  const tableBody = document.getElementById('tableBody');
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const pageData = tableData.filter(item => !item.hidden && !item.deleted).slice(start, end);
+
+  tableBody.innerHTML = '';
+
+  pageData.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td data-label="${translation.table.avatar}">
+        <div class="avatar-container">
+          <img src="${item.avatar}" alt="${item.name}" class="avatar-img">
+        </div>
+      </td>
+      <td data-label="${translation.table.id}">${item.id}</td>
+      <td data-label="${translation.table.name}">
+        <a href="#" onclick="showWorkerDetails(${item.id})">${item.name}</a>
+      </td>
+      <td data-label="${translation.table.serviceType}">${item.serviceType}</td>
+      <td data-label="${translation.table.area}">${item.area}</td>
+      <td data-label="${translation.table.rating}">
+        <span class="rating">${'★'.repeat(Math.floor(item.rating))}${item.rating % 1 >= 0.5 ? '½' : ''}</span>
+        <span>(${item.rating})</span>
+      </td>
+      <td data-label="${translation.table.phone}">${item.phone}</td>
+      <td data-label="${translation.table.workTime}">${item.workTime}</td>
+      <td data-label="${translation.table.certified}">
+        <span class="certified-badge ${item.certified ? '' : 'uncertified'}">
+          ${item.certified ? translation.table.certified : translation.table.uncertified}
+        </span>
+      </td>
+      <td data-label="${translation.table.operations}">
+        <button onclick="editWorker(${item.id})" class="action-btn edit-btn">${translation.buttons.edit}</button>
+        <button onclick="deleteWorker(${item.id})" class="action-btn delete-btn">${translation.buttons.delete}</button>
+        <button onclick="toggleWorker(${item.id})" class="action-btn hide-btn">
+          ${item.hidden ? translation.buttons.show : translation.buttons.hide}
+        </button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function initTable() {
+  // Keep existing IDs if data exists
+  const existingIds = new Set(tableData.map(worker => worker.id));
+  const currentLength = tableData.length;
+  
+  // Only add new workers up to 120 total
+  for(let i = currentLength + 1; i <= 120; i++) {
+    // Skip if ID already exists
+    if(existingIds.has(i)) continue;
+    
+    // Generate random name
+    const surname = CHINESE_SURNAMES[Math.floor(Math.random() * CHINESE_SURNAMES.length)];
+    const name = CHINESE_NAMES[Math.floor(Math.random() * CHINESE_NAMES.length)];
+    
+    // Generate random location
+    const cityIndex = Math.floor(Math.random() * CHINESE_CITIES.length);
+    const selectedCity = CHINESE_CITIES[cityIndex];
+    const areaIndex = Math.floor(Math.random() * selectedCity.areas.length);
+    const fullArea = `${selectedCity.city}${selectedCity.areas[areaIndex]}`;
+    
+    // Generate random phone number
+    const phonePrefix = ['130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '150', '151', '152', '153', '155', '156', '157', '158', '159', '186', '187', '188'][Math.floor(Math.random() * 22)];
+    const phoneMiddle = Math.floor(Math.random() * 9000 + 1000);
+    const phoneSuffix = Math.floor(Math.random() * 9000 + 1000);
+    const phoneNumber = `${phonePrefix}-${phoneMiddle}-${phoneSuffix}`;
+
+    const newWorker = {
+      id: i,  // Use sequential ID
+      avatar: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%23f0f0f0'/%3E%3Ctext x='25' y='25' font-family='Arial' font-size='20' fill='%23999' text-anchor='middle' dy='.3em'%3E+%3C/text%3E%3C/svg%3E",
+      photo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='100' y='100' font-family='Arial' font-size='20' fill='%23999' text-anchor='middle' dy='.3em'%3E点击上传工作照片%3C/text%3E%3C/svg%3E",
+      name: `${surname}${name}`,
+      serviceType: ["水电维修", "家具维修", "家电维修", "保洁服务"][Math.floor(Math.random() * 4)],
+      area: fullArea,
+      rating: (Math.random() * 2 + 3).toFixed(1),
+      phone: phoneNumber,
+      workTime: ["8:00-17:00", "9:00-18:00", "10:00-19:00", "7:30-16:30"][Math.floor(Math.random() * 4)],
+      certified: Math.random() > 0.5,
+      introduction: "",
+      hidden: false,
+      deleted: false
+    };
+    
+    tableData.push(newWorker);
+  }
+  
+  registeredWorkers = tableData.filter(worker => !worker.deleted).length;
+  renderTable();
+  updatePagination();
+}
+
+// Update the pagination
+function updatePagination() {
+  const visibleItems = tableData.filter(item => !item.hidden && !item.deleted).length;
+  const totalPages = Math.ceil(visibleItems / itemsPerPage);
+  
+  // Update page display
+  document.getElementById('pageDisplay').textContent = `${currentPage} / ${totalPages}`;
+  
+  // Update button states
+  document.getElementById('prevBtn').disabled = currentPage === 1;
+  document.getElementById('nextBtn').disabled = currentPage >= totalPages;
+}
+
+// Update the statistics display
+function updateStatistics() {
+  document.getElementById('workerCount').textContent = registeredWorkers;
+  document.getElementById('userCount').textContent = registeredUsers;
+}
+
+// Add function to handle statistics updates
+function incrementWorkerCount() {
+  registeredWorkers++;
+  updateStatistics();
+}
+
+function incrementUserCount() {
+  registeredUsers++;
+  updateStatistics();
+}
+
+function decrementWorkerCount() {
+  if (registeredWorkers > 0) {
+    registeredWorkers--;
+    updateStatistics();
+  }
+}
+
+function decrementUserCount() {
+  if (registeredUsers > 0) {
+    registeredUsers--;
+    updateStatistics();
+  }
+}
+
+// Update the area filter in HTML to include all cities
+function updateAreaFilter() {
+  const areaFilter = document.getElementById('areaFilter');
+  areaFilter.innerHTML = `
+    <select id="citySelect" onchange="updateDistrictSelect()">
+      <option value="">选择城市</option>
+      ${CHINESE_CITIES.map(city => `
+        <option value="${city.city}">${city.city}</option>
+      `).join('')}
+    </select>
+    <select id="districtSelect">
+      <option value="">选择区域</option>
+    </select>
+  `;
+}
+
+// Add district select update function 
+function updateDistrictSelect() {
+  const citySelect = document.getElementById('citySelect');
+  const districtSelect = document.getElementById('districtSelect');
+  const selectedCity = citySelect.value;
+
+  districtSelect.innerHTML = '<option value="">选择区域</option>';
+  
+  if(selectedCity) {
+    const cityData = CHINESE_CITIES.find(city => city.city === selectedCity);
+    if(cityData) {
+      cityData.areas.forEach(area => {
+        districtSelect.innerHTML += `<option value="${area}">${area}</option>`;
+      });
+    }
+  }
+}
+
+// Initialize the worker and user counts
+document.addEventListener('DOMContentLoaded', function() {
+  registeredWorkers = tableData.length;
+  registeredUsers = Math.floor(Math.random() * 1000); // Sample initial user count
+  updateStatistics();
+  updateAreaFilter();
+});
+
+// Initialize page
+initTable();
+
+function showWorkerDetails(id) {
+  const worker = tableData.find(w => w.id === id);
+  if (!worker) return;
+
+  const modal = document.getElementById('workerModal');
+  const photo = document.getElementById('workerPhoto');
+  const name = document.getElementById('workerName');
+  const intro = document.querySelector('.worker-intro');
+
+  photo.src = worker.photo; // Use worker.photo instead of worker.avatar
+  photo.style.cursor = 'pointer';
+  photo.onclick = () => handleWorkerPhotoUpload(worker.id);
+  photo.title = '点击更换工作照片';
+  
+  name.textContent = worker.name;
+  intro.innerHTML = `
+    <div class="worker-details-form">
+      <div class="form-group">
+        <label>姓名:</label>
+        <input type="text" id="detailName" value="${worker.name}">
+      </div>
+      <div class="form-group">
+        <label>服务类型:</label>
+        <select id="detailServiceType">
+          <option value="水电维修" ${worker.serviceType === '水电维修' ? 'selected' : ''}>水电维修</option>
+          <option value="家具维修" ${worker.serviceType === '家具维修' ? 'selected' : ''}>家具维修</option>
+          <option value="家电维修" ${worker.serviceType === '家电维修' ? 'selected' : ''}>家电维修</option>
+          <option value="保洁服务" ${worker.serviceType === '保洁服务' ? 'selected' : ''}>保洁服务</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>服务区域:</label>
+        <div style="display: flex; gap: 10px;">
+          <select id="detailCity" onchange="updateDetailDistrict()">
+            <option value="">选择城市</option>
+            ${CHINESE_CITIES.map(city => `
+              <option value="${city.city}" ${city.city === currentArea ? 'selected' : ''}>
+                ${city.city}
+              </option>
+            `).join('')}
+          </select>
+          <select id="detailDistrict">
+            <option value="">选择区域</option>
+            ${currentArea ? CHINESE_CITIES.find(city => city.city === currentArea)?.areas.map(area => `
+              <option value="${area}" ${area === currentDistrict + '区' ? 'selected' : ''}>
+                ${area}
+              </option>
+            `).join('') : ''}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>联系电话:</label>
+        <input type="tel" id="detailPhone" value="${worker.phone}">
+      </div>
+      <div class="form-group">
+        <label>工作时间:</label>
+        <input type="text" id="detailWorkTime" value="${worker.workTime}">
+      </div>
+      <button onclick="saveWorkerDetails(${worker.id})" class="submit-btn">保存修改</button>
+    </div>
+  `;
+
+  modal.style.display = 'block';
+}
+
+function generateAreaOptions(currentArea) {
+  const [currentCity = '', currentDistrict = ''] = currentArea ? currentArea.match(/(.+?)(区|县)/).slice(1) : ['', ''];
+  
+  let options = `
+    <div style="display: flex; gap: 10px;">
+      <select id="detailCity" onchange="updateDetailDistrict()">
+        <option value="">选择城市</option>
+        ${CHINESE_CITIES.map(city => `
+          <option value="${city.city}" ${city.city === currentCity ? 'selected' : ''}>
+            ${city.city}
+          </option>
+        `).join('')}
+      </select>
+      <select id="detailDistrict">
+        <option value="">选择区域</option>
+        ${currentCity ? CHINESE_CITIES.find(city => city.city === currentCity)?.areas.map(area => `
+          <option value="${area}" ${area === currentDistrict + '区' ? 'selected' : ''}>
+            ${area}
+          </option>
+        `).join('') : ''}
+      </select>
+    </div>
+  `;
+  return options;
+}
+
+// Add detail district update function
+function updateDetailDistrict() {
+  const citySelect = document.getElementById('detailCity');
+  const districtSelect = document.getElementById('detailDistrict');
+  const selectedCity = citySelect.value;
+
+  districtSelect.innerHTML = '<option value="">选择区域</option>';
+  
+  if(selectedCity) {
+    const cityData = CHINESE_CITIES.find(city => city.city === selectedCity);
+    if(cityData) {
+      cityData.areas.forEach(area => {
+        districtSelect.innerHTML += `<option value="${area}">${area}</option>`;
+      });
+    }
+  }
+}
+
+function saveWorkerDetails(workerId) {
+  const worker = tableData.find(w => w.id === workerId);
+  if (!worker) return;
+
+  const city = document.getElementById('detailCity').value;
+  const district = document.getElementById('detailDistrict').value;
+
+  worker.name = document.getElementById('detailName').value;
+  worker.serviceType = document.getElementById('detailServiceType').value;
+  worker.area = city && district ? `${city}${district}` : worker.area;
+  worker.phone = document.getElementById('detailPhone').value;
+  worker.workTime = document.getElementById('detailWorkTime').value;
+
+  renderTable();
+  
+  alert('信息修改成功！');
+}
+
+function deleteWorker(id) {
+  const currentLang = document.getElementById('languageSelect').value || 'zh';
+  if (confirm(translations[currentLang].messages.confirmDelete)) {
+    // Instead of filtering and changing IDs, just mark as deleted/hidden
+    const worker = tableData.find(w => w.id === id);
+    if(worker) {
+      worker.hidden = true;
+      worker.deleted = true; // Add a deleted flag
+    }
+    decrementWorkerCount();
+    renderTable();
+    updatePagination();
+  }
+}
+
+function toggleWorker(id) {
+  const worker = tableData.find(w => w.id === id);
+  if (worker && !worker.deleted) { // Only toggle if not deleted
+    worker.hidden = !worker.hidden;
+    renderTable();
+    updatePagination();
+  }
+}
+
+// Pagination functions
+function previousPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable();
+    updatePagination();
+  }
+}
+
+function nextPage() {
+  const visibleItems = tableData.filter(item => !item.hidden && !item.deleted).length;
+  const totalPages = Math.ceil(visibleItems / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderTable();
+    updatePagination();
+  }
+}
+
+// Add search function
+function searchData() {
+  const keyword = document.getElementById('keywordSearch').value.toLowerCase();
+  const city = document.getElementById('citySelect').value;
+  const district = document.getElementById('districtSelect').value;
+  const address = document.getElementById('addressSearch').value.toLowerCase();
+  const service = document.getElementById('serviceType').value;
+
+  currentPage = 1;
+
+  tableData.forEach(item => {
+    item.hidden = false;
+    if (item.deleted || 
+        (keyword && !(item.name.toLowerCase().includes(keyword) || 
+                     item.serviceType.toLowerCase().includes(keyword) || 
+                     item.area.toLowerCase().includes(keyword) || 
+                     item.phone.toLowerCase().includes(keyword))) || 
+        (city && !item.area.includes(city)) ||
+        (district && !item.area.includes(district)) ||
+        (address && !item.area.toLowerCase().includes(address)) || 
+        (service && item.serviceType !== service)) {
+      item.hidden = true;
+    }
+  });
+
+  renderTable();
+  updatePagination();
+}
+
+// Add modal management functions
+function closeModal() {
+  const modal = document.getElementById('registerModal');
+  modal.style.display = 'none';
+}
+
+function showRegisterModal() {
+  const modal = document.getElementById('registerModal');
+  modal.style.display = 'block';
+}
+
+function closeEditModal() {
+  const modal = document.getElementById('editModal');
+  modal.style.display = 'none';
+}
+
+// Add user management functions
+function showUserLogin() {
+  const modal = document.getElementById('userLoginModal');
+  modal.style.display = 'block';
+}
+
+function closeUserLoginModal() {
+  const modal = document.getElementById('userLoginModal');
+  modal.style.display = 'none';
+}
+
+function showUserRegister() {
+  const modal = document.getElementById('userRegisterModal');
+  modal.style.display = 'block';
+}
+
+function closeUserRegisterModal() {
+  const modal = document.getElementById('userRegisterModal');
+  modal.style.display = 'none';
+}
+
+function switchToRegister() {
+  closeUserLoginModal();
+  showUserRegister();
+}
+
+function switchToLogin() {
+  closeUserRegisterModal();
+  showUserLogin();
+}
+
+// Add editWorker function
+function editWorker(id) {
+  const worker = tableData.find(w => w.id === id);
+  if (!worker) return;
+  
+  const modal = document.getElementById('editModal');
+  const form = document.getElementById('editForm');
+  
+  // Populate form fields
+  document.getElementById('editId').value = worker.id;
+  document.getElementById('editName').value = worker.name;
+  document.getElementById('editServiceType').value = worker.serviceType;
+  
+  // Update avatar preview
+  const avatarPreview = document.getElementById('editAvatarPreview').querySelector('img');
+  avatarPreview.src = worker.avatar;
+  
+  // Parse current area into city and district
+  const areaMatch = worker.area.match(/(.+?)(区|县)/);
+  const currentCity = areaMatch ? areaMatch[1] : '';
+  const currentDistrict = areaMatch ? areaMatch[2] : '';
+  
+  // Populate area selects
+  const areaSelects = generateAreaOptions(worker.area);
+  const areaContainer = form.querySelector('.form-group:nth-child(4)');
+  areaContainer.innerHTML = `
+    <label>服务区域：</label>
+    ${areaSelects}
+  `;
+  
+  // Update district select based on current city
+  if(currentCity) {
+    const cityData = CHINESE_CITIES.find(city => city.city === currentCity);
+    if(cityData) {
+      const districtSelect = document.getElementById('editDistrict');
+      districtSelect.innerHTML = `
+        <option value="">选择区域</option>
+        ${cityData.areas.map(area => `
+          <option value="${area}" ${area === currentDistrict ? 'selected' : ''}>
+            ${area}
+          </option>
+        `).join('')}
+      `;
+    }
+  }
+  
+  document.getElementById('editRating').value = worker.rating;
+  document.getElementById('editPhone').value = worker.phone;
+  document.getElementById('editWorkTime').value = worker.workTime;
+  document.getElementById('editCertified').value = worker.certified.toString();
+  
+  // Add form submit handler
+  form.onsubmit = function(e) {
+    e.preventDefault();
+    
+    // Get selected city and district
+    const city = document.getElementById('editCity').value;
+    const district = document.getElementById('editDistrict').value;
+    const fullArea = city && district ? `${city}${district}` : worker.area;
+    
+    // Update worker data
+    worker.name = document.getElementById('editName').value;
+    worker.serviceType = document.getElementById('editServiceType').value;
+    worker.area = fullArea;
+    worker.rating = parseFloat(document.getElementById('editRating').value);
+    worker.phone = document.getElementById('editPhone').value;
+    worker.workTime = document.getElementById('editWorkTime').value;
+    worker.certified = document.getElementById('editCertified').value === 'true';
+    
+    // Close modal and refresh table
+    closeEditModal();
+    renderTable();
+  };
+  
+  modal.style.display = 'block';
+}
+
+// Add handleAvatarUpload function
+function handleAvatarUpload(workerId) {
+  const fileInput = document.getElementById('editAvatar');
+  fileInput.click();
+  
+  fileInput.onchange = function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const worker = tableData.find(w => w.id === workerId);
+        if (worker) {
+          worker.avatar = event.target.result;
+          document.getElementById('editAvatarPreview').querySelector('img').src = event.target.result;
+          renderTable();
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+}
+
+// Add handleWorkerPhotoUpload function 
+function handleWorkerPhotoUpload(workerId) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.click();
+  
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const worker = tableData.find(w => w.id === workerId);
+        if (worker) {
+          worker.photo = event.target.result;
+          document.getElementById('workerPhoto').src = event.target.result;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+}
+</script>
+</body></html>
