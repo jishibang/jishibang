@@ -1,29 +1,44 @@
-import React from 'react'
-
+﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import RegisterWorker from "./pages/RegisterWorker";
+import RegisterSuccess from "./pages/RegisterSuccess";
+import ForgotPassword from "./pages/ForgotPassword";
+import Profile from "./pages/Profile";
+import Orders from "./pages/Orders";
+import PrivateRoute from "./components/common/PrivateRoute";
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-8">
-          家政服务平台
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-4">保洁服务</h2>
-            <p className="text-gray-600">专业的保洁团队，为您提供全方位的清洁服务</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-4">维修服务</h2>
-            <p className="text-gray-600">专业维修师傅，快速解决您的家居问题</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-4">搬家服务</h2>
-            <p className="text-gray-600">专业搬家团队，让您的搬家更轻松</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="register/worker" element={<RegisterWorker />} />
+          <Route path="register/success" element={<RegisterSuccess />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route
+            path="profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="orders"
+            element={
+              <PrivateRoute>
+                <Orders />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
+export default App;
