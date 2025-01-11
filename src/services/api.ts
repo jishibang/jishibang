@@ -1,68 +1,116 @@
-﻿import { User, Worker } from "../types/user";
-import { RegisterUserData, RegisterWorkerData } from "../types/auth";
+﻿import axios, { AxiosInstance } from 'axios';
+import type { User, Worker, LoginResponse, RegisterData, DashboardStats } from '../types/user';
+
+const instance: AxiosInstance = axios.create({
+  baseURL: '/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+// 请求拦截器
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 响应拦截器
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const apiService = {
-  async getWorkers(): Promise<Worker[]> {
-    const response = await fetch("/api/workers");
-    return response.json();
+  // 认证相关
+  login: async (phone: string, code: string): Promise<LoginResponse> => {
+    const { data } = await instance.post('/auth/login', { phone, code });
+    return data;
   },
-  async getWorkerById(id: string): Promise<Worker> {
-    const response = await fetch(`/api/workers/${id}`);
-    return response.json();
+
+  register: async (registerData: RegisterData): Promise<LoginResponse> => {
+    const { data } = await instance.post('/auth/register', registerData);
+    return data;
   },
-  async getWorkerDetail(id: string): Promise<Worker> {
-    const response = await fetch(`/api/workers/${id}/detail`);
-    return response.json();
+
+  getCurrentUser: async () => {
+    return instance.get<{ data: User | Worker }>('/user/current');
   },
-  async searchWorkers(params: Record<string, string>): Promise<Worker[]> {
-    const queryString = new URLSearchParams(params).toString();
-    const response = await fetch(`/api/workers/search?${queryString}`);
-    return response.json();
+
+  // 验证码相关
+  sendVerificationCode: async (phone: string) => {
+    return instance.post('/auth/send-code', { phone });
   },
-  async getDashboardStats(): Promise<any> {
-    const response = await fetch("/api/admin/dashboard/stats");
-    return response.json();
+
+  // 用户相关
+  updateUser: async (userData: Partial<User>) => {
+    return instance.put<{ data: User }>('/user/profile', userData);
   },
-  async getWorkerVerifications(): Promise<Worker[]> {
-    const response = await fetch("/api/admin/verifications");
-    return response.json();
+
+  // 工作者相关
+  updateWorker: async (workerData: Partial<Worker>) => {
+    return instance.put<{ data: Worker }>('/worker/profile', workerData);
   },
-  async submitVerification(data: FormData): Promise<void> {
-    await fetch("/api/workers/verify", {
-      method: "POST",
-      body: data,
-    });
+
+  getWorkerProfile: async (workerId: string) => {
+    return instance.get<{ data: Worker }>(`/worker/${workerId}`);
   },
-  async register(data: RegisterUserData): Promise<User> {
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    return response.json();
+
+  getWorkerList: async (params: {
+    area?: string;
+    service?: string;
+    type?: string;
+    page?: number;
+    limit?: number;
+  }) => {
+    return instance.get<{ data: Worker[]; total: number }>('/workers', { params });
   },
-  async registerWorker(data: RegisterWorkerData): Promise<Worker> {
+
+  // 身份验证相关
+  verifyIdCard: async (data: {
+    idCardFront: File;
+    idCardBack: File;
+  }) => {
     const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else if (Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value));
-      } else if (value !== undefined) {
-        formData.append(key, String(value));
-      }
+    formData.append('idCardFront', data.idCardFront);
+    formData.append('idCardBack', data.idCardBack);
+    return instance.post('/worker/verify-id-card', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
-    const response = await fetch("/api/register/worker", {
-      method: "POST",
-      body: formData,
-    });
-    return response.json();
   },
-  async verifyWorker(workerId: string): Promise<Worker> {
-    const response = await fetch(`/api/admin/workers/${workerId}/verify`, {
-      method: "POST",
-    });
-    return response.json();
+
+  // 管理员相关
+  getDashboardStats: async () => {
+    return instance.get<{ data: DashboardStats }>('/admin/dashboard/stats');
+  },
+
+  getPendingVerifications: async () => {
+    return instance.get<{ data: Worker[] }>('/admin/verifications/pending');
+  },
+
+  approveVerification: async (workerId: string) => {
+    return instance.post(`/admin/verifications/${workerId}/approve`);
+  },
+
+  rejectVerification: async (workerId: string, reason: string) => {
+    return instance.post(`/admin/verifications/${workerId}/reject`, { reason });
   },
 };
+
+export default apiService;

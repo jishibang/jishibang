@@ -1,17 +1,13 @@
-﻿import { Worker } from "./user";
+﻿export interface SearchParams {
+  keyword?: string;
+  area?: string;
+  service?: string;
+  page?: number;
+  limit?: number;
+}
+
 export interface ApiResponse<T> {
   code: number;
-  data: T;
   message: string;
-}
-export interface WorkersResponse {
-  workers: Worker[];
-  total: number;
-}
-export interface SearchParams {
-  experience?: string;
-  rating?: string;
-  verified?: string;
-  service?: string;
-  area?: string;
+  data: T;
 }

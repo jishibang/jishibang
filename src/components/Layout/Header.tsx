@@ -1,72 +1,76 @@
-﻿import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-const Header: React.FC = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  const handleLogout = async () => {
-    await logout();
-    navigate("/login");
-  };
+﻿import React from 'react';
+import { Link } from 'react-router-dom';
+import { useLang } from '../../contexts/LangContext';
+import { useAuth } from '../../contexts/AuthContext';
+
+const Header = () => {
+  const { t } = useLang();
+  const { isAuthenticated, user, logout } = useAuth();
+
   return (
-    <header className="bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src="/logo.png" alt="急事帮" className="h-8" />
-            <span className="text-xl font-bold text-gray-900">急事帮</span>
-          </Link>
-          <nav className="flex items-center space-x-6">
-            {user ? (
-              <>
-                <Link to="/orders" className="text-gray-600 hover:text-blue-500">
-                  我的订单
-                </Link>
+    <header className="bg-white shadow">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex">
+            <Link to="/" className="flex items-center">
+              <span className="text-xl font-bold text-gray-900">
+                {t('app.name')}
+              </span>
+            </Link>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                {user?.role === 'worker' && (
+                  <Link
+                    to="/worker/orders"
+                    className="text-gray-700 hover:text-gray-900"
+                  >
+                    工单管理
+                  </Link>
+                )}
                 <div className="relative group">
-                  <button className="flex items-center space-x-1 text-gray-600 hover:text-blue-500">
-                    <img 
-                      src={user.avatar || "/default-avatar.png"} 
-                      alt="头像" 
-                      className="w-8 h-8 rounded-full"
-                    />
-                    <span>{user.name}</span>
+                  <button className="flex items-center space-x-1 text-gray-700 hover:text-gray-900">
+                    <span>{user?.username}</span>
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 invisible group-hover:visible">
-                    <Link 
-                      to="/profile" 
+                  <div className="absolute right-0 w-48 mt-2 py-2 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <Link
+                      to="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      个人资料
+                      {t('header.profile')}
                     </Link>
                     <button
-                      onClick={handleLogout}
+                      onClick={logout}
                       className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      退出登录
+                      {t('header.logout')}
                     </button>
                   </div>
                 </div>
-              </>
+              </div>
             ) : (
-              <>
-                <Link 
-                  to="/login" 
-                  className="text-gray-600 hover:text-blue-500"
+              <div className="space-x-4">
+                <Link
+                  to="/login"
+                  className="text-gray-700 hover:text-gray-900"
                 >
-                  登录
+                  {t('header.login')}
                 </Link>
-                <Link 
-                  to="/register" 
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+                <Link
+                  to="/register-choice"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
                 >
-                  注册
+                  {t('header.register')}
                 </Link>
-              </>
+              </div>
             )}
-          </nav>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };
+
 export default Header;

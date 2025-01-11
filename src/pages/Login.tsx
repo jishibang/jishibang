@@ -1,42 +1,33 @@
-﻿import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Toast from "../components/common/Toast";
-interface ToastState {
-  show: boolean;
-  message: string;
-  type: "success" | "error" | "info";
-}
-const Login: React.FC = () => {
+﻿import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useLang } from '../contexts/LangContext';
+import { useAuth } from '../contexts/AuthContext';
+
+const Login = () => {
   const navigate = useNavigate();
-  const [loginType, setLoginType] = useState<"password" | "code">("password");
-  const [formData, setFormData] = useState({
-    phone: "",
-    password: "",
-    code: "",
-  });
-  const [countdown, setCountdown] = useState(0);
+  const { t } = useLang();
+  const { login, sendVerificationCode } = useAuth();
+
+  const [phone, setPhone] = useState('');
+  const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState<ToastState>({
-    show: false,
-    message: "",
-    type: "info",
-  });
-  const showToast = (message: string, type: "success" | "error" | "info" = "info") => {
-    setToast({ show: true, message, type });
-  };
-  const handleChange = (name: string, value: string) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const [codeSent, setCodeSent] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+
   const handleSendCode = async () => {
-    if (!formData.phone.match(/^1[3-9]\d{9}$/) || countdown > 0) return;
+    if (!phone || phone.length !== 11) {
+      alert('请输入正确的手机号');
+      return;
+    }
+
     try {
       setLoading(true);
-      // TODO: 调用发送验证码 API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      showToast("验证码已发送", "success");
+      await sendVerificationCode(phone);
+      setCodeSent(true);
       setCountdown(60);
+      
       const timer = setInterval(() => {
-        setCountdown(prev => {
+        setCountdown((prev) => {
           if (prev <= 1) {
             clearInterval(timer);
             return 0;
@@ -45,184 +36,124 @@ const Login: React.FC = () => {
         });
       }, 1000);
     } catch (error) {
-      showToast("发送验证码失败，请重试", "error");
+      alert('发送验证码失败');
     } finally {
       setLoading(false);
     }
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading) return;
-    // 表单验证
-    if (!formData.phone.match(/^1[3-9]\d{9}$/)) {
-      showToast("请输入正确的手机号码", "error");
+    
+    if (!phone || !code) {
+      alert('请填写完整信息');
       return;
     }
-    if (loginType === "password" && !formData.password) {
-      showToast("请输入密码", "error");
-      return;
-    }
-    if (loginType === "code" && !formData.code.match(/^\d{6}$/)) {
-      showToast("请输入6位数字验证码", "error");
-      return;
-    }
+
     try {
       setLoading(true);
-      // TODO: 调用登录 API
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      showToast("登录成功！", "success");
-      setTimeout(() => navigate("/"), 1500);
+      await login(phone, code);
+      navigate('/');
     } catch (error) {
-      showToast("登录失败，请检查账号密码", "error");
+      alert('登录失败');
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      {toast.show && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(prev => ({ ...prev, show: false }))}
-        />
-      )}
-      <div className="max-w-md w-full space-y-8 animate-fade-in">
-        <div>
-          <img src="/logo.png" alt="急事帮" className="mx-auto h-16" />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            登录账号
-          </h2>
-        </div>
-        <div className="flex justify-center space-x-4 border-b">
-          <button
-            className={`pb-2 px-4 ${
-              loginType === "password"
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "text-gray-500"
-            } transition-colors duration-300`}
-            onClick={() => setLoginType("password")}
-          >
-            密码登录
-          </button>
-          <button
-            className={`pb-2 px-4 ${
-              loginType === "code"
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "text-gray-500"
-            } transition-colors duration-300`}
-            onClick={() => setLoginType("code")}
-          >
-            验证码登录
-          </button>
-        </div>
-        <form className="mt-8 space-y-6 animate-slide-up" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          登录账号
+        </h2>
+      </div>
+
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                手机号码
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                手机号
               </label>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                className="input w-full"
-                placeholder="请输入手机号码"
-                required
-                pattern="^1[3-9]\d{9}$"
-                disabled={loading}
-              />
-            </div>
-            {loginType === "password" ? (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  密码
-                </label>
+              <div className="mt-1">
                 <input
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) => handleChange("password", e.target.value)}
-                  className="input w-full"
-                  placeholder="请输入密码"
+                  id="phone"
+                  name="phone"
+                  type="tel"
                   required
-                  disabled={loading}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
-                <div className="mt-1 text-right">
-                  <Link
-                    to="/forgot-password"
-                    className="text-sm text-blue-600 hover:text-blue-500"
-                  >
-                    忘记密码？
-                  </Link>
-                </div>
               </div>
-            ) : (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  验证码
-                </label>
-                <div className="flex gap-4">
-                  <input
-                    type="text"
-                    value={formData.code}
-                    onChange={(e) => handleChange("code", e.target.value)}
-                    className="input flex-grow"
-                    placeholder="请输入验证码"
-                    required
-                    pattern="^\d{6}$"
-                    disabled={loading}
-                  />
-                  <button
-                    type="button"
-                    onClick={handleSendCode}
-                    disabled={loading || countdown > 0 || !formData.phone.match(/^1[3-9]\d{9}$/)}
-                    className={`btn ${
-                      countdown > 0 ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'
-                    } text-white transition-colors duration-300 min-w-[120px]`}
-                  >
-                    {countdown > 0 ? `${countdown}秒后重试` : '获取验证码'}
-                  </button>
-                </div>
+            </div>
+
+            <div>
+              <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+                验证码
+              </label>
+              <div className="mt-1 flex rounded-md shadow-sm">
+                <input
+                  id="code"
+                  name="code"
+                  type="text"
+                  required
+                  className="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white 
+                    ${countdown > 0 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-blue-600 hover:bg-blue-700'
+                    }`}
+                  onClick={handleSendCode}
+                  disabled={countdown > 0 || loading}
+                >
+                  {countdown > 0 ? `${countdown}s` : '发送验证码'}
+                </button>
               </div>
-            )}
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                disabled={loading}
+              >
+                {loading ? '登录中...' : '登录'}
+              </button>
+            </div>
+          </form>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">
+                  还没有账号？
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Link
+                to="/register-choice"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                立即注册
+              </Link>
+            </div>
           </div>
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full btn ${
-                loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'
-              } text-white transition-colors duration-300 relative`}
-            >
-              {loading ? (
-                <>
-                  <span className="opacity-0">登录</span>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  </div>
-                </>
-              ) : (
-                '登录'
-              )}
-            </button>
-          </div>
-          <div className="flex justify-between items-center">
-            <Link
-              to="/register"
-              className="text-sm text-blue-600 hover:text-blue-500"
-            >
-              注册用户账号
-            </Link>
-            <Link
-              to="/register/worker"
-              className="text-sm text-blue-600 hover:text-blue-500"
-            >
-              注册成为师傅
-            </Link>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
+
 export default Login;
